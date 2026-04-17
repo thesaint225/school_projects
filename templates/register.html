@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+
+<style>
+/* 🌿 GLOBAL */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f6f7f4;
+}
+
+/* 🧾 CARD */
+.card {
+    background: #ffffff;
+    width: 450px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    border-top: 5px solid #556b2f;
+}
+
+/* 🟢 TITLE */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2f3b1f;
+}
+
+/* 📥 INPUT */
+.input-group {
+    margin-bottom: 12px;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5a33;
+    display: block;
+    margin-bottom: 6px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d7ddcf;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: #556b2f;
+    box-shadow: 0 0 0 3px rgba(85,107,47,0.15);
+}
+
+/* 🎯 GENDER */
+.gender {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 15px;
+}
+
+.gender label {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+/* 📜 TERMS */
+.terms {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #4b5a33;
+    margin: 15px 0;
+}
+
+/* 🔘 BUTTON */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #556b2f;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: #3f4f21;
+}
+
+/* LINK */
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.login-link a {
+    color: #556b2f;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Create Account</h2>
+
+    <form method="POST" action="/register">
+
+        <!-- FULL NAME -->
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" name="fullname" required>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <!-- USERNAME -->
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" name="username" required>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" required>
+        </div>
+
+        <!-- DATE OF BIRTH -->
+        <div class="input-group">
+            <label>Date of Birth</label>
+            <input type="date" name="dob" required>
+        </div>
+
+        <!-- GENDER -->
+        <div class="gender">
+            <label>
+                <input type="radio" name="gender" value="male" checked>
+                Male
+            </label>
+
+            <label>
+                <input type="radio" name="gender" value="female">
+                Female
+            </label>
+        </div>
+
+        <!-- DEPARTMENT -->
+        <div class="input-group">
+            <label>Department</label>
+            <select name="department" required>
+                <option value="">Select Department</option>
+                <option value="it">Information Technology</option>
+                <option value="cs">Computer Science</option>
+                <option value="business">Business</option>
+                <option value="engineering">Engineering</option>
+            </select>
+        </div>
+
+        <!-- TERMS -->
+        <div class="terms">
+            <input type="checkbox" required>
+            <label>I agree to the Terms & Conditions</label>
+        </div>
+
+        <!-- BUTTON -->
+        <button type="submit" class="btn">Register</button>
+
+    </form>
+
+    <div class="login-link">
+        Already have an account? <a href="/login">Login</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<style>
+/* 🌿 GLOBAL */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f6f7f4;
+}
+
+/* 🧾 CARD */
+.login-card {
+    background: #ffffff;
+    width: 380px;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    text-align: center;
+    border-top: 5px solid #556b2f; /* olive accent */
+}
+
+/* 🟢 TITLE */
+h2 {
+    margin-bottom: 25px;
+    color: #2f3b1f;
+    font-weight: 600;
+}
+
+/* 📥 INPUT */
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4b5a33;
+    display: block;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d7ddcf;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus {
+    border-color: #556b2f;
+    box-shadow: 0 0 0 3px rgba(85,107,47,0.15);
+}
+
+/* 🎯 ROLE */
+.role-selection {
+    display: flex;
+    justify-content: space-between;
+    margin: 18px 0;
+    font-size: 14px;
+    color: #4b5a33;
+}
+
+.role-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 🔘 BUTTONS */
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+/* LOGIN BUTTON */
+.btn-login {
+    background: #556b2f;
+    color: white;
+}
+
+.btn-login:hover {
+    background: #3f4f21;
+}
+
+/* EXIT BUTTON */
+.btn-exit {
+    background: #e9ece5;
+    color: #2f3b1f;
+}
+
+.btn-exit:hover {
+    background: #dfe5d7;
+}
+
+/* LINK */
+.register-link {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #6b705c;
+}
+
+.register-link a {
+    color: #556b2f;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-card">
+    <h2>Welcome Back</h2>
+
+    <form method="POST" action="/login">
+
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" name="username" required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <div class="role-selection">
+            <label class="role-option">
+                <input type="radio" name="role" value="teacher" checked>
+                Teacher
+            </label>
+
+            <label class="role-option">
+                <input type="radio" name="role" value="student">
+                Student
+            </label>
+        </div>
+
+        <div class="button-container">
+            <button type="submit" class="btn btn-login">Login</button>
+            <button type="button" class="btn btn-exit">Exit</button>
+        </div>
+
+    </form>
+
+    <div class="register-link">
+        Don't have an account? <a href="register">Register</a>
+    </div>
+</div>
+
+</body>
+</html>
