@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f6f7f4; /* Your light olive background */
+        }
+
+        /* 🧾 DASHBOARD CONTAINER (Card Style) */
+        .dashboard-container {
+            background: #ffffff;
+            width: 950px;
+            height: 600px;
+            display: flex;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border-top: 6px solid #556b2f; /* Your olive accent */
+        }
+
+        /* 🟢 SIDEBAR */
+        .sidebar {
+            width: 240px;
+            border-right: 1px solid #d7ddcf; /* Your light green border */
+            padding-top: 40px;
+            background-color: #ffffff;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            width: 100%;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 18px 35px;
+            text-decoration: none;
+            color: #4b5a33; /* Your label color */
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #f0f2ed;
+            color: #556b2f;
+            padding-left: 40px;
+        }
+
+        /* Active state to show where the user is */
+        .nav-links a.active {
+            color: #556b2f;
+            background: #f8f9f6;
+            border-right: 4px solid #556b2f;
+        }
+
+        /* Logout link using your exit button colors */
+        .logout-link {
+            margin-top: 20px;
+            color: #6b705c !important; 
+        }
+
+        /* 🎯 MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 30px 40px;
+            border-bottom: 1px solid #d7ddcf;
+            text-align: left;
+        }
+
+        h2 {
+            margin: 0;
+            color: #2f3b1f; /* Your dark heading color */
+            font-weight: 600;
+            font-size: 1.6rem;
+            letter-spacing: -0.5px;
+        }
+
+        .content-body {
+            flex: 1;
+            padding: 40px;
+            background-color: #fafaf9; /* Slightly darker white for the canvas */
+            color: #6b705c;
+            font-style: italic;
+        }
+
+        /* Scrollbar styling for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d7ddcf;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">My Profile</a></li>
+                    <li><a href="#">View Scores</a></li>
+                    <li><a href="/login" class="logout-link">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h2>Welcome, {Student_Name from my backend probably}!</h2>
+            </header>
+            
+            <section class="content-body">
+                Select an option from the menu to get started.
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
