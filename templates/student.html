@@ -133,7 +133,7 @@
 
         <main class="main-content">
             <header class="header">
-                <h2>Welcome, {Student_Name from my backend probably}!</h2>
+                <h2>Welcome, {{session.get('username')|capitalize}}!</h2>
             </header>
             
             <section class="content-body">

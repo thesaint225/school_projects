@@ -14,3 +14,6 @@ class User(db.Model):
     dob = db.Column(db.Date, nullable=True)
     gender = db.Column(db.String, nullable=True)
     department = db.Column(db.String, nullable=True)
+    role = db.Column(db.String(20),nullable=False,default='student')
+
+    

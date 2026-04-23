@@ -1,7 +1,7 @@
-from flask import Flask,render_template,request,redirect,session
+from flask import Flask,render_template,request,redirect,session,url_for
 from sqlalchemy import text
 import  os 
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash,check_password_hash
 from models.user import User
 from extensions import db
 
@@ -16,16 +16,9 @@ app.secret_key= os.getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DATABASE_URL')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# print(os.getenv('DATABASE_URL'))
 
 # initialize db
 db.init_app(app)
-
-
-
-
-
-
 
 
 @app.route("/")
@@ -38,17 +31,36 @@ def login():
 
     if request.method == 'GET':
         return render_template("login.html")
-
-
     username = request.form.get("username")
     password = request.form.get("password")
-    role = request.form.get("role")    
+    confirmed_password =request.form.get("confirm_password")
+    role = request.form.get("role")
+
+    # Basic validation 
+    if not username or not password :
+        return 'missing username or password',404
     
-    # replace with database later 
-    if username == "admin" and password == "1234":
-        session["user"] =username
-        session['role'] ="teacher"
-        return redirect('/teacher')       
+    #Fetch user using ORM(safe)
+    user = User.query.filter_by(username=username).first()
+
+    #invalid login
+    if not user or not  check_password_hash(user.password_hash,password):
+        return 'invalid credential',401
+    
+    # store session
+    session['user_id']= user.id
+    session['role']=user.role 
+    session['username']=user.username
+
+    # redirect based on role 
+    if user.role == 'teacher':
+        return redirect(url_for('teacher_dashboard'))
+    
+    elif user.role == 'student':
+        return redirect(url_for('student'))
+    
+    return 'invalid role',403
+       
     
     return 'invalid credential'
 
@@ -68,7 +80,14 @@ def register():
     department = request.form.get('department')
 
     # validation
-    hashed_password= generate_password_hash(password)
+    if not all([fullname,email,username,password,confirmed_password,]):
+        return "missing field",400
+    
+    if password != confirmed_password:
+        return 'password do no match',400
+
+    
+    hashed_password = generate_password_hash(password)
 
     # CREATE USER 
     new_user = User(
@@ -78,7 +97,8 @@ def register():
     password_hash = hashed_password,
     dob=dob,
     gender=gender,
-    department=department
+    department=department,
+    role="student"
 )
 
     try:
@@ -105,11 +125,7 @@ def db_test():
     except Exception as e:
         return f"Database error: {str(e)}"
 
-# @app.route('/dashboard')
-# def dashboard():
-#     if "user" not in session:
-#         return redirect('/login')
-#     return f'Welcome {session['user']} to the dashboard'
+
 
 
 
@@ -127,6 +143,14 @@ def teacher_dashboard():
 
 @app.route('/student_dashboard')
 def student():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+
+    if session.get('role') !='student':
+        return 'access denied',403 
+    
+
     return render_template('student.html')
 
 
