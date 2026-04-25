@@ -124,9 +124,9 @@
         <aside class="sidebar">
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#" class="active">My Profile</a></li>
-                    <li><a href="#">View Scores</a></li>
-                    <li><a href="/login" class="logout-link">Logout</a></li>
+                    <li><a href="{{ url_for('student.student_dashboard') }}?page=profile" class="active">My Profile</a></li>
+                    <li><a href="{{ url_for('student.student_dashboard') }}?page=scores">View Scores</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}" class="logout-link">Logout</a></li>
                 </ul>
             </nav>
         </aside>
@@ -137,7 +137,22 @@
             </header>
             
             <section class="content-body">
-                Select an option from the menu to get started.
+                {% if page == 'profile' %}
+                <h3>My Profile</h3>
+                <p><strong>username:</strong>{{session.get('username')}}</p>
+                <p><strong>Role:</strong> {{ session.get('role') }}</p>
+
+                {% elif page == 'scores' %}
+                <h3>My Scores</h3>
+                <p>No scores yet (we will connect DB later)</p>
+
+                 {% else %}
+                 <p>Select an option from the menu to get started.</p>
+
+                 {% endif %}
+
+
+
             </section>
         </main>
     </div>
