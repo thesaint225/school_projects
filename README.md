@@ -1,5 +1,6 @@
 ├── app.py
 ├── config.py
+├── seed.py
 
 ├── models/
 │ ├── **init**.py ✅ (IMPORTANT - makes models a package)
@@ -34,3 +35,20 @@
 ├── .gitignore
 ├── requirements.txt
 └── venv/
+
+###
+
+The `seed.py` file is used to populate the database with initial data such as default users (e.g., teachers or admins).
+
+This helps avoid manual data entry and ensures consistent development setup.
+
+#### ▶️ How to run:
+
+```bash
+python seed.py
+
+#### 🔐 Default Login (after seeding)
+
+- Username: `teacher1`
+- Password: `teacher123`
+```
